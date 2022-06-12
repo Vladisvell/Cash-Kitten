@@ -20,9 +20,10 @@ MonoBehaviour:
   ButtonDesc2: "\u0427\u0442\u043E, \u0443\u0436\u0435?!"
   DayToAppear: 44
   Player: {fileID: 0}
+  defaultState: 0
   IsActive: 0
-  NextEventEffect1: {fileID: 0}
-  NextEventEffect2: {fileID: 11400000, guid: 5d076d512b397bc4b8a2742e3833a977, type: 2}
+  NextEvent1: {fileID: 0}
+  NextEvent2: {fileID: 11400000, guid: 5d076d512b397bc4b8a2742e3833a977, type: 2}
   Effects1:
   - effect: 1
     count: -2500

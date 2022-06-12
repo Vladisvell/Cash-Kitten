@@ -24,8 +24,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   defaultState: 1
   IsActive: 1
-  NextEventEffect1: {fileID: 11400000, guid: 7818d0179bda06444aa7b91fb2a1fa20, type: 2}
-  NextEventEffect2: {fileID: 0}
+  NextEvent1: {fileID: 11400000, guid: 7818d0179bda06444aa7b91fb2a1fa20, type: 2}
+  NextEvent2: {fileID: 0}
   Effects1:
   - effect: 1
     count: 1000

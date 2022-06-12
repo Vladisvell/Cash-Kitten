@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int Money;
     public int Profit = 0;
     public int Deficit = 0;
+    public int day = 0;
     public string Name;
     public int CatEmployees = 0;
     public int Worktables = 1;

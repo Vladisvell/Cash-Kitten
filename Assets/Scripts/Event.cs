@@ -16,8 +16,8 @@ public class Event : ScriptableObject
     public Player Player;
     public bool defaultState;
     public bool IsActive;
-    public Event NextEventEffect1;
-    public Event NextEventEffect2;
+    public Event NextEvent1;
+    public Event NextEvent2;
     public List<Effect> Effects1 = new List<Effect>(3);
     public List<Effect> Effects2 = new List<Effect>(3);
 
@@ -34,6 +34,8 @@ public class Event : ScriptableObject
                 Player.AddDeficit(effect.count);
             if (effect.effect == EffectType.ActivateEvent)
                 ActivateNextEvent1();
+            if (effect.effect == EffectType.PostponeEvent)
+                NextEvent1.DayToAppear = Player.day + effect.count;
         }
     }
 
@@ -49,19 +51,22 @@ public class Event : ScriptableObject
                 Player.AddDeficit(effect.count);
             if (effect.effect == EffectType.ActivateEvent)
                 ActivateNextEvent2();
+            if (effect.effect == EffectType.PostponeEvent)
+                NextEvent2.DayToAppear = Player.day + effect.count;
+                
         }
     }
 
     public void ActivateNextEvent1()
     {
-        if(NextEventEffect1 != null)
-            NextEventEffect1.IsActive = true;
+        if(NextEvent1 != null)
+            NextEvent1.IsActive = true;
     }
 
     public void ActivateNextEvent2()
     {
-        if (NextEventEffect2 != null)
-            NextEventEffect2.IsActive = true;
+        if (NextEvent2 != null)
+            NextEvent2.IsActive = true;
     }
 
     public enum EffectType
@@ -70,7 +75,8 @@ public class Event : ScriptableObject
         Money,
         Profit,
         Deficit,
-        ActivateEvent
+        ActivateEvent,
+        PostponeEvent
     }
 
     [System.Serializable]

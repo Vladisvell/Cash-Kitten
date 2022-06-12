@@ -20,12 +20,12 @@ MonoBehaviour:
     \u0431\u0443\u0434\u0435\u043C \u043E\u0442\u0434\u0430\u0442\u044C 2500 \u0434\u0435\u043D\u0435\u0433."
   ButtonDesc1: "\u0414\u0430"
   ButtonDesc2: "\u041D\u0435\u0442"
-  DayToAppear: -1
+  DayToAppear: -11
   Player: {fileID: 0}
   defaultState: 0
   IsActive: 0
-  NextEventEffect1: {fileID: 11400000, guid: 4a8274cef541c0e41b99471cc2af91ed, type: 2}
-  NextEventEffect2: {fileID: 0}
+  NextEvent1: {fileID: 11400000, guid: 4a8274cef541c0e41b99471cc2af91ed, type: 2}
+  NextEvent2: {fileID: 0}
   Effects1:
   - effect: 1
     count: 1200

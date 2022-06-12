@@ -72,6 +72,7 @@ public class EventDialogueHandler : MonoBehaviour
         panel.SetActive(false);
         dialogue.Effect1();
         timeScript.ResumeTimer();
+        Button2.gameObject.SetActive(true);
     }
 
     void SecondAction()
@@ -79,5 +80,6 @@ public class EventDialogueHandler : MonoBehaviour
         panel.SetActive(false);
         dialogue.Effect2();
         timeScript.ResumeTimer();
+        Button2.gameObject.SetActive(true);
     }
 }

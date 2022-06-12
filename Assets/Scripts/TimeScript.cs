@@ -15,8 +15,9 @@ public class TimeScript : MonoBehaviour
     public TextMeshProUGUI NonProfits;
     public Player Player;
     public EventDialogueHandler eventDisplay;
-    public Dictionary<int, Event> events = new Dictionary<int, Event>(10);
-    public List<Event> dayEvents = new List<Event>(10);
+    public Dictionary<int, Event> events = new Dictionary<int, Event>(20);
+    public List<Event> dayEvents = new List<Event>(20);
+    public float timeSpeed = 1;
     
 
     private void Start()
@@ -26,8 +27,22 @@ public class TimeScript : MonoBehaviour
             ev.IsActive = ev.defaultState;
             events.Add(ev.DayToAppear, ev);
         }
-            
+        timeSpeed = 1;
         StartTimer();
+    }
+
+    public void AddCreditEvent(Event ev)
+    {
+        int appday = days + 14;
+        if (events.ContainsKey(appday))
+            appday++;
+        else
+            events.Add(appday, ev);
+    }
+
+    public void SetDay(int day)
+    {
+        days = day;
     }
 
     void TimeUpdate()
@@ -35,6 +50,7 @@ public class TimeScript : MonoBehaviour
         if (isPaused)
             return;
         days++;
+        Player.day = days;
         UpdateStatistics();
         EconomicsUpdate();
         CycleEvents();
@@ -64,7 +80,7 @@ public class TimeScript : MonoBehaviour
         isPaused = false;
         if (!isStarted)
         {
-            InvokeRepeating("TimeUpdate", 0, 1);
+            InvokeRepeating("TimeUpdate", 0, timeSpeed);
             isStarted = true;
         }
            
