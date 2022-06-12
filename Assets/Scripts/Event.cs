@@ -14,8 +14,10 @@ public class Event : ScriptableObject
     public string ButtonDesc2;
     public int DayToAppear;
     public Player Player;
+    public bool defaultState;
     public bool IsActive;
-    public Event nextEvent;
+    public Event NextEventEffect1;
+    public Event NextEventEffect2;
     public List<Effect> Effects1 = new List<Effect>(3);
     public List<Effect> Effects2 = new List<Effect>(3);
 
@@ -25,13 +27,13 @@ public class Event : ScriptableObject
         foreach(var effect in Effects1)
         {
             if (effect.effect == EffectType.Money)
-                Player.Money += effect.count;
+                Player.AddMoney(effect.count);
             if (effect.effect == EffectType.Profit)
                 Player.AddProfit(effect.count);
             if (effect.effect == EffectType.Deficit)
                 Player.AddDeficit(effect.count);
             if (effect.effect == EffectType.ActivateEvent)
-                ActivateNextEvent();
+                ActivateNextEvent1();
         }
     }
 
@@ -40,20 +42,26 @@ public class Event : ScriptableObject
         foreach (var effect in Effects2)
         {
             if (effect.effect == EffectType.Money)
-                Player.Money += effect.count;
+                Player.AddMoney(effect.count);
             if (effect.effect == EffectType.Profit)
                 Player.AddProfit(effect.count);
             if (effect.effect == EffectType.Deficit)
                 Player.AddDeficit(effect.count);
             if (effect.effect == EffectType.ActivateEvent)
-                ActivateNextEvent();
+                ActivateNextEvent2();
         }
     }
 
-    public void ActivateNextEvent()
+    public void ActivateNextEvent1()
     {
-        if(nextEvent != null)
-            nextEvent.IsActive = true;
+        if(NextEventEffect1 != null)
+            NextEventEffect1.IsActive = true;
+    }
+
+    public void ActivateNextEvent2()
+    {
+        if (NextEventEffect2 != null)
+            NextEventEffect2.IsActive = true;
     }
 
     public enum EffectType

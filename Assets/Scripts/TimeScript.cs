@@ -21,17 +21,14 @@ public class TimeScript : MonoBehaviour
 
     private void Start()
     {
-        //time = this.GetComponent<TextMeshProUGUI>();
         foreach (var ev in dayEvents)
+        {
+            ev.IsActive = ev.defaultState;
             events.Add(ev.DayToAppear, ev);
+        }
+            
         StartTimer();
     }
-
-    //void Recalculate()
-    //{
-    //    hours = (totalMinutes / 60) % 24;
-    //    minutes = totalMinutes % 60;
-    //}
 
     void TimeUpdate()
     {
@@ -45,7 +42,7 @@ public class TimeScript : MonoBehaviour
 
     void EconomicsUpdate()
     {
-        Player.MoneyTick();
+        Player.Money += (Player.Profit - Player.Deficit);
     }
 
     void UpdateStatistics()

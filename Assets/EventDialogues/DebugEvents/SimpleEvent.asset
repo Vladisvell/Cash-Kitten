@@ -20,6 +20,8 @@ MonoBehaviour:
   ButtonDesc2: "\u041D\u0435\u0442, \u043D\u0435 \u0441\u043E\u0433\u043B\u0430\u0441\u0435\u043D."
   DayToAppear: 20
   Player: {fileID: 0}
+  IsActive: 0
+  nextEvent: {fileID: 0}
   Effects1:
   - effect: 1
     count: -100

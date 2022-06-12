@@ -22,6 +22,7 @@ public class EventDialogueHandler : MonoBehaviour
 
     private UnityAction m_MyFirstAction;
     private UnityAction m_MySecondAction;
+    private UnityAction removeListeners;
 
     public TimeScript timeScript;
 
@@ -41,6 +42,8 @@ public class EventDialogueHandler : MonoBehaviour
     public void Assign(Event dialogue)
     {
         timeScript.PauseTimer();
+        Button1.onClick.RemoveAllListeners();
+        Button2.onClick.RemoveAllListeners();
         this.dialogue = dialogue;
         this.dialogue.Player = Player;
         if(this.dialogue == null)
@@ -57,12 +60,24 @@ public class EventDialogueHandler : MonoBehaviour
             buttonDesc1.text = dialogue.ButtonDesc1;
             buttonDesc2.text = dialogue.ButtonDesc2;
         }
-        m_MyFirstAction += () => dialogue.Effect1();
-        m_MyFirstAction += () => timeScript.ResumeTimer();
-        m_MySecondAction += () => dialogue.Effect2();
-        m_MySecondAction += () => timeScript.ResumeTimer();
-        Button1.onClick.AddListener(m_MyFirstAction);
-        Button2.onClick.AddListener(m_MySecondAction);
+        Button1.onClick.AddListener(FirstAction);
+        Button2.onClick.AddListener(SecondAction);
+        if (buttonDesc2.text == "")
+            Button2.gameObject.SetActive(false);
         panel.SetActive(true);
+    }
+
+    void FirstAction()
+    {
+        panel.SetActive(false);
+        dialogue.Effect1();
+        timeScript.ResumeTimer();
+    }
+
+    void SecondAction()
+    {
+        panel.SetActive(false);
+        dialogue.Effect2();
+        timeScript.ResumeTimer();
     }
 }

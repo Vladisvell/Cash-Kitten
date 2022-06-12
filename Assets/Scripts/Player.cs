@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class Player : MonoBehaviour
@@ -9,6 +10,13 @@ public class Player : MonoBehaviour
     public int Profit = 0;
     public int Deficit = 0;
     public string Name;
+    public int CatEmployees = 0;
+    public int Worktables = 1;
+    public int CanHire = 10;
+    public TextMeshProUGUI catEmployers;
+    public TextMeshProUGUI catUpkeep;
+    public TextMeshProUGUI worktablesInfo;
+    public TextMeshProUGUI canHireInfo;
 
     public void AddMoney(int count)
     {
@@ -37,14 +45,29 @@ public class Player : MonoBehaviour
 
     public void BuyWorker(WorkerType type)
     {
-        if (type == WorkerType.Cat && HasEnoughMoneyToPerfomOperation(100))
+        if (type == WorkerType.Cat && HasEnoughMoneyToPerfomOperation(100) && CatEmployees < Worktables * 10)
         {
             RemoveMoney(100);
             AddProfit(10);
+            AddDeficit(2);
+            CatEmployees++;
+            catEmployers.text = "Котов: " + CatEmployees.ToString();
+            catUpkeep.text = "Содержание: " + CatEmployees * 2;
+            CanHire -= 1;
+            canHireInfo.text = "Можно нанять: " + CanHire;
+        }
+        if (type == WorkerType.Worktable && HasEnoughMoneyToPerfomOperation(1000))
+        {
+            RemoveMoney(1000);
+            CanHire += 10;
+            Worktables++;
+            worktablesInfo.text = "Оборудования: " + Worktables;
+            canHireInfo.text = "Можно нанять: " + CanHire;
         }
     }
 
-    public void BuyCat() => BuyWorker(WorkerType.Cat); 
+    public void BuyCat() => BuyWorker(WorkerType.Cat);
+    public void BuyWorkTable() => BuyWorker(WorkerType.Worktable);
 
     public bool HasEnoughMoneyToPerfomOperation(int count)
     {
@@ -58,8 +81,7 @@ public class Player : MonoBehaviour
     {
         None,
         Cat,
-        MegaCat,
-        SuperCat
+        Worktable,
     }
 
     public struct Worker

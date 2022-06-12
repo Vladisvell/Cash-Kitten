@@ -20,7 +20,7 @@ MonoBehaviour:
   ButtonDesc2: "\u041D\u0435\u0442"
   DayToAppear: 5
   Player: {fileID: 0}
-  IsActive: 1
+  IsActive: 0
   nextEvent: {fileID: 11400000, guid: 2a937e3511b10d044b876e9b2bdc8cb6, type: 2}
   Effects1:
   - effect: 4
