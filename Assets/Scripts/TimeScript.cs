@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimeScript : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class TimeScript : MonoBehaviour
     public TextMeshProUGUI NonProfits;
     public Player Player;
     public EventDialogueHandler eventDisplay;
+    public Event gameoverEvent;
+    bool isGameOver = false;
     public Dictionary<int, Event> events = new Dictionary<int, Event>(20);
     public List<Event> dayEvents = new List<Event>(20);
     public float timeSpeed = 1;
@@ -28,6 +31,7 @@ public class TimeScript : MonoBehaviour
             events.Add(ev.DayToAppear, ev);
         }
         timeSpeed = 1;
+        isGameOver = false;
         StartTimer();
     }
 
@@ -40,6 +44,11 @@ public class TimeScript : MonoBehaviour
             events.Add(appday, ev);
     }
 
+    public void AssignEvent(Event ev)
+    {
+        eventDisplay.Assign(ev);
+    }
+
     public void SetDay(int day)
     {
         days = day;
@@ -47,6 +56,11 @@ public class TimeScript : MonoBehaviour
 
     void TimeUpdate()
     {
+        if (isGameOver && !eventDisplay.panel.active)
+        {
+            isPaused = true;
+            SceneManager.LoadScene("Main Menu");
+        }
         if (isPaused)
             return;
         days++;
@@ -54,6 +68,11 @@ public class TimeScript : MonoBehaviour
         UpdateStatistics();
         EconomicsUpdate();
         CycleEvents();
+        if (Player.Money < -1000)
+        {
+            AssignEvent(gameoverEvent);
+            isGameOver = true;
+        }       
     }
 
     void EconomicsUpdate()

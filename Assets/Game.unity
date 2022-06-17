@@ -275,7 +275,10 @@ MonoBehaviour:
   NonProfits: {fileID: 504008097}
   Player: {fileID: 1960763181}
   eventDisplay: {fileID: 1831448369}
+  gameoverEvent: {fileID: 11400000, guid: e94e50be0b27c47428867bf1adc67103, type: 2}
   dayEvents:
+  - {fileID: 11400000, guid: fa114f0b6c4e0ce4fae3c12e4f65f0ac, type: 2}
+  - {fileID: 11400000, guid: 70b330b9964cfbc45a62747a2511cb53, type: 2}
   - {fileID: 11400000, guid: 5125b36e16c9172488c47cf3f0b4f23c, type: 2}
   - {fileID: 11400000, guid: fe37dfa0a6337d74c8326fde663d7d1c, type: 2}
   - {fileID: 11400000, guid: c01383496e8e40f49bc05b1ff4ec0dde, type: 2}
@@ -1519,12 +1522,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1960763181}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: RemoveMoney
+        m_MethodName: AddMoney
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: -1000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6250,7 +6253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1306934630
 RectTransform:
   m_ObjectHideFlags: 0
