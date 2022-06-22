@@ -17,6 +17,8 @@ public class TimeScript : MonoBehaviour
     public Player Player;
     public EventDialogueHandler eventDisplay;
     public Event gameoverEvent;
+    public Event goodEnding;
+    public Event badEnding;
     bool isGameOver = false;
     public Dictionary<int, Event> events = new Dictionary<int, Event>(20);
     public List<Event> dayEvents = new List<Event>(20);
@@ -56,7 +58,7 @@ public class TimeScript : MonoBehaviour
 
     void TimeUpdate()
     {
-        if (isGameOver && !eventDisplay.panel.active)
+        if (isGameOver && !eventDisplay.panel.activeSelf)
         {
             isPaused = true;
             SceneManager.LoadScene("Main Menu");
@@ -72,7 +74,15 @@ public class TimeScript : MonoBehaviour
         {
             AssignEvent(gameoverEvent);
             isGameOver = true;
-        }       
+        }
+        if(days >= 365)
+        {
+            if (Player.Money < 500000)
+                AssignEvent(badEnding);
+            else
+                AssignEvent(goodEnding);
+            isGameOver = true;
+        }
     }
 
     void EconomicsUpdate()

@@ -276,6 +276,8 @@ MonoBehaviour:
   Player: {fileID: 1960763181}
   eventDisplay: {fileID: 1831448369}
   gameoverEvent: {fileID: 11400000, guid: e94e50be0b27c47428867bf1adc67103, type: 2}
+  goodEnding: {fileID: 11400000, guid: 2b6482806e5b188439756967f91946f2, type: 2}
+  badEnding: {fileID: 11400000, guid: 60d6366849013bb49a94000d127a0c86, type: 2}
   dayEvents:
   - {fileID: 11400000, guid: fa114f0b6c4e0ce4fae3c12e4f65f0ac, type: 2}
   - {fileID: 11400000, guid: 70b330b9964cfbc45a62747a2511cb53, type: 2}
@@ -790,7 +792,19 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 85
+          m_IntArgument: 365
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1831448369}
+        m_TargetAssemblyTypeName: EventDialogueHandler, Assembly-CSharp
+        m_MethodName: Assign
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 60d6366849013bb49a94000d127a0c86, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Event, Assembly-CSharp
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

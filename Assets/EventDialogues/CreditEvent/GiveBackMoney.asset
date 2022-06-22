@@ -21,7 +21,7 @@ MonoBehaviour:
   DayToAppear: -11
   Player: {fileID: 0}
   defaultState: 0
-  IsActive: 1
+  IsActive: 0
   NextEvent1: {fileID: 0}
   NextEvent2: {fileID: 0}
   Effects1:
